@@ -16,12 +16,12 @@ logger.setLevel(logging.INFO)
 
 load_dotenv()
 
-# --- SerpApi Configuration ---
+
 SERP_API_KEY = os.getenv('SERP_API_KEY')
 if not SERP_API_KEY:
     raise ValueError("SERP_API_KEY environment variable is required")
 
-# --- Airport Code Knowledge Base ---
+
 AIRPORT_CODES = {
     "toronto": "YYZ",
     "karachi": "KHI",
@@ -49,10 +49,8 @@ AIRPORT_CODES = {
     "lon": "LHR",
 }
 
-# --- SerpApi Google Flights API Function ---
 
 def _format_duration_serpapi(minutes: int) -> str:
-    """Helper to format duration in minutes into a readable string."""
     if minutes is None:
         return "N/A"
     hours = minutes // 60
@@ -75,7 +73,7 @@ def search_flights(
     infants_in_seat: int = 0,
     infants_on_lap: int = 0,
     travel_class: str = "1",
-    currency: str = None, 
+    currency: str = None,
     gl: str = None,
     hl: str = None,
     type: str = "1",
@@ -96,16 +94,13 @@ def search_flights(
     max_duration: int = None,
     departure_token: str = None,
     booking_token: str = None,
-) -> dict:
-    """
-    Searches for flight offers using the SerpApi Google Flights API.
-    """
+) ->dict:
     url = "https://serpapi.com/search.json"
     effective_departure_id = AIRPORT_CODES.get(departure_id.lower(), departure_id.upper())
     effective_arrival_id = AIRPORT_CODES.get(arrival_id.lower(), arrival_id.upper())
 
     params = {
-        "engine": "google_flights",
+        "engine": "Google Flights",
         "api_key": SERP_API_KEY,
     }
     
@@ -196,9 +191,6 @@ def search_cheapest_flights_in_range(
     currency: str = None,
     stops: str = "0",
 ) -> dict:
-    """
-    Finds the cheapest flight within a specified date range.
-    """
     
     try:
         start_dt = datetime.strptime(start_date, "%Y-%m-%d")
@@ -233,7 +225,7 @@ def search_cheapest_flights_in_range(
             travel_class=travel_class,
             currency=currency,
             stops=stops,
-            type="2", # Force one-way search for calendar data
+            type="2",
         )
         
         if 'error' in month_results:
@@ -272,7 +264,7 @@ def search_cheapest_flights_in_range(
             departure_id=departure_id,
             arrival_id=arrival_id,
             outbound_date=cheapest_date,
-            type="2", # Force one-way search for specific details
+            type="2",
             adults=adults,
             travel_class=travel_class,
             currency=currency,
@@ -322,7 +314,6 @@ def search_cheapest_flights_in_range(
             )
         }
 
-# --- Agent Class and Main Entrypoint ---
 
 class FlightAssistant(Agent):
     def __init__(self, tools: list) -> None:
@@ -352,7 +343,7 @@ When presenting flight results, be conversational and highlight key information 
         self.background_audio = BackgroundAudioPlayer()
 
     async def on_tool_call(self, tool_call: FunctionCall) -> dict:
-        """Handles calls from the LLM to defined tools (API functions)."""
+        
         
         await self.background_audio.start(room=self.room, agent_session=self.session)
         audio_file = "waiting song.mp3"
@@ -391,7 +382,6 @@ When presenting flight results, be conversational and highlight key information 
 
 
 async def entrypoint(ctx: agents.JobContext):
-    """Main entrypoint for the flight assistant agent."""
     
     search_flights_schema = {
         "name": "search_flights",
@@ -618,4 +608,5 @@ if __name__ == "__main__":
     agents.cli.run_app(
         agents.WorkerOptions(entrypoint_fnc=entrypoint, prewarm_fnc=prewarm)
     )
+    
 
