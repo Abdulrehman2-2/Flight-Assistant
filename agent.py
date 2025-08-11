@@ -73,7 +73,7 @@ def search_flights(
     infants_in_seat: int = 0,
     infants_on_lap: int = 0,
     travel_class: str = "1",
-    currency: str = None,
+    currency: str = None, 
     gl: str = None,
     hl: str = None,
     type: str = "1",
@@ -225,7 +225,7 @@ def search_cheapest_flights_in_range(
             travel_class=travel_class,
             currency=currency,
             stops=stops,
-            type="2",
+            type="2", 
         )
         
         if 'error' in month_results:
@@ -264,7 +264,7 @@ def search_cheapest_flights_in_range(
             departure_id=departure_id,
             arrival_id=arrival_id,
             outbound_date=cheapest_date,
-            type="2",
+            type="2", 
             adults=adults,
             travel_class=travel_class,
             currency=currency,
@@ -343,7 +343,6 @@ When presenting flight results, be conversational and highlight key information 
         self.background_audio = BackgroundAudioPlayer()
 
     async def on_tool_call(self, tool_call: FunctionCall) -> dict:
-        
         
         await self.background_audio.start(room=self.room, agent_session=self.session)
         audio_file = "waiting song.mp3"
@@ -608,5 +607,3 @@ if __name__ == "__main__":
     agents.cli.run_app(
         agents.WorkerOptions(entrypoint_fnc=entrypoint, prewarm_fnc=prewarm)
     )
-    
-
