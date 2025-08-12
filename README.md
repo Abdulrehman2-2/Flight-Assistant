@@ -1,5 +1,5 @@
 A Conversational AI Flight Assistant: A Multimodal Approach to Real-Time Flight Search ✈️
-This paper presents a conversational AI agent built to assist users with real-time flight searches using a multimodal architecture. The system leverages a suite of specialized AI services and an external API to create a seamless, voice-enabled user experience. The core of the agent's functionality is its ability to interpret natural language requests and execute complex data-retrieval tasks.
+This article presents a conversational AI agent built to assist users with real-time flight searches using a multimodal architecture. The system leverages a suite of specialized AI services and an external API to create a seamless, voice-enabled user experience. The core of the agent's functionality is its ability to interpret natural language requests and execute complex data-retrieval tasks.
 
 System Architecture and Components
 The agent's architecture is a pipeline that processes a user's voice input, performs a search, and generates a voice response in real-time. The key components and their roles are as follows:
@@ -28,6 +28,6 @@ search_cheapest_flights_in_range: This is a more complex function designed to fi
 The entire system is built using the LiveKit Agents framework, which simplifies the integration of these different services and handles the real-time, asynchronous nature of the conversation. The use of a function-calling LLM is crucial, as it offloads the complex task of natural language understanding and query formation to a powerful model, allowing the agent to focus on executing the tools effectively.
 
 Conclusion
-This project demonstrates a robust and scalable architecture for a conversational AI agent that solves a real-world problem. By combining real-time communication tools, advanced LLMs with function-calling capabilities, and external data sources, it creates a powerful and user-friendly service. This approach is highly flexible and can be adapted to various other domains that require real-time data retrieval, such as booking hotels, checking weather, or getting stock prices. Future improvements could include multi-step conversations to refine search criteria and support for multi-city itineraries.
+This project shows how a powerful AI agent can help people find flights in real-time. By combining voice technology, smart AI models, and outside data, we've created a service that's easy to use. This method can also be used for other things like booking hotels, checking the weather, or getting stock prices. In the future, we might have more features added.
 
- This isn't just about code it's about making travel planning more accessible and seamless for everyone.
+If help is needed u can contact abdulrehmanafroze@gmail.com
