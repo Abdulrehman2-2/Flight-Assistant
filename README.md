@@ -1,4 +1,4 @@
-Here's the text formatted in Markdown, which is used by GitHub for text formatting.
+
 
 ### **A CONVERSATIONAL AI FLIGHT ASSISTANT: A MULTIMODAL APPROACH TO REAL-TIME FLIGHT SEARCH ✈️**
 
